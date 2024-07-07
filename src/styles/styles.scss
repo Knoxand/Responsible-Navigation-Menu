@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --primary-color: #000000;
+    --secondary-color: #fafafa;
+    --font-family: "Inter", sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding: 0.5rem 5rem;
+    margin-bottom: 20px;
+    background-color: var(--secondary-color);
+    box-shadow: 0px 4px 14px 0.5px rgba(0,0,0,0.75);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.logo, .logo img {
+    width: auto;
+    height: 40px;
+}
+
+.nav {
+    display: flex;
+    margin-left: auto;
+
+    ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+
+        li {
+            margin: 0 1rem;
+
+            a {
+                text-decoration: none;
+                color: var(--primary-color);
+                font-weight: 500;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--primary-color);
+                    position: absolute;
+                    bottom: -3px;
+                    left: 0;
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    transition: transform 0.25s ease-in-out;
+                }
+
+                &:hover:after {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+}
+
+.search-icon {
+    background: url("../assets/search-icon.svg") no-repeat center center;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0 1rem;
+}
+
+.hamburger {
+    cursor: pointer;
+    display: none;
+
+    span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: var(--primary-color);
+        margin: 4px 0;
+    }
+}
+
+.search-bar {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    z-index: 9999999;
+
+    &.active {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input {
+        flex-grow: 1;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #e0e0e0;
+        margin: 0 1rem 0 0.5rem;
+        transition: all 0.4s ease, right 0.4s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #0a0a0a;
+            box-shadow: 0 0 0 2px #0a0a0a40;
+        }
+    }
+
+    .back-search {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.4s ease, right 0.4s ease;
+    }
+}
+
+.search-results {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999998;
+
+    &.active {
+        display: block;
+    }
+
+    .search-results-container {
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+    }
+
+    .search-result-item {
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.8rem;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    }
+}
+
+main {
+    padding: 0 2.5rem;
+
+    .main-item {
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 110px;
+        background-color: #fafafa;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 56px;
+        transition: right 0.3s ease-in-out;
+        z-index: 9999999;
+
+        &.active {
+            right: 0;
+        }
+
+        ul {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin: 0.5rem 0 0.5rem 0.5rem;
+
+                a:after {
+                    content: none;
+                }
+            }
+        }
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 9999999;
+    }
+
+    .search-icon {
+        margin-left: auto;
+        z-index: 9999999;
+    }
+}
